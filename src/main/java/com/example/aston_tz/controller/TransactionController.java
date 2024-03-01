@@ -1,6 +1,7 @@
 package com.example.aston_tz.controller;
 
 import com.example.aston_tz.dto.TransactionDto;
+import com.example.aston_tz.entity.Account;
 import com.example.aston_tz.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,9 +19,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TransactionController {
     private final TransactionService transactionService;
-    @PostMapping("/transactions")
-    public ResponseEntity<List<TransactionDto>> findAllTransactionsByAccountNumber(@RequestBody UUID numberAccount) {
+    @PostMapping
+    public ResponseEntity<List<TransactionDto>> findAllTransactionsByAccountNumber(@RequestBody Account numberAccount) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(transactionService.findAllTransactionsByAccountNumber(numberAccount));
+                .body(transactionService.findAllTransactionsByAccountNumber(numberAccount.getNumberAccount()));
     }
 }
